@@ -43,6 +43,7 @@ public class LoginPage extends Page {
 
     public boolean login(String userName, String password) throws InterruptedException {
         waitForPageLoad();
+        click(loginLink);
         fill(user_login, "Username").with(userName);
         fill(passwd_login, "Password").with(password);
         waitForLoginButtonToEnable();

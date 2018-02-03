@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.Random;
 
 public class HomePage extends Page{
 
@@ -32,14 +33,13 @@ public class HomePage extends Page{
         return isElementDisplayed(logoutLink, "Login button");
     }
 
-
-    public void openAnyPost(){
-
+    public void openAnyPost() throws InterruptedException {
         int postIndex = userPosts.size();
-
-
+        if(postIndex>1) {
+            Random rn = new Random();
+            postIndex = rn.nextInt(postIndex) + 1;
+        }
+        click(userPosts.get(postIndex));
 
     }
-
-
 }
