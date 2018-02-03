@@ -11,9 +11,4 @@ public class loginSteps {
         LoginPage loginPage = new LoginPage();
         assertThat("Login page should be ready", loginPage.isReady());
     }
-
-    @Step("User should get navigated to homepage")
-    public void userShouldGetNavigatedToHomePage() {
-
-    }
 }

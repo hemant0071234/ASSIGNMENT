@@ -14,7 +14,7 @@ public class HomePage extends Page{
     @FindBy(id="header-bottom-right")
     public WebElement headerBottom;
 
-    @FindBy(xpath = "//div[starts-with(@id,'thing_t3_')]")
+    @FindBy(xpath = "//div[starts-with(@id,'thing_t3_')]/a")
     public List<WebElement> userPosts;
 
     @FindBy(linkText = "Submit a new link")
@@ -32,6 +32,14 @@ public class HomePage extends Page{
         return isElementDisplayed(logoutLink, "Login button");
     }
 
+
+    public void openAnyPost(){
+
+        int postIndex = userPosts.size();
+
+
+
+    }
 
 
 }
