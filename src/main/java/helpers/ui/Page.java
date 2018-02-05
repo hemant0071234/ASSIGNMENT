@@ -30,6 +30,7 @@ public class Page {
 
     public Page() {
         driver = DriverFactory.getDriver();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, Timeout.element_timeout_in_seconds);
         action = new Actions(driver);
         jsDriver = (JavascriptExecutor) driver;
@@ -58,6 +59,12 @@ public class Page {
         waitForPageLoad();
         return this;
     }
+
+    public void hoverOverElementAndClick(WebElement element){
+        action.moveToElement(element).click().build().perform();
+    }
+
+
 
     public WebDriver getDriver(){return driver;}
 

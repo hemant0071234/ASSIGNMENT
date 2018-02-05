@@ -16,7 +16,6 @@ public class homePageSteps {
     public void userShouldGetNavigatedToHomePage() throws InterruptedException {
         HomePage homePage = new HomePage();
         Storage.setHomePage(homePage);
-
         assertThat("Login page should be ready", homePage.isReady());
     }
 
@@ -59,6 +58,12 @@ public class homePageSteps {
     @Step("Vote a post having text < text> with <upvote>")
     public void votePostWithFlag(String postTitleText, String voteFlag) throws InterruptedException {
         HomePage homePage = Storage.getHomePage();
-        homePage.voteAPost(postTitleText,voteFlag);
+        homePage.voteAPost(postTitleText, voteFlag);
+    }
+
+    @Step("Vote should be updated")
+    public void voteShouldBeUpdated() {
+        HomePage homePage = Storage.getHomePage();
+        assertThat("Post vote count should be updated", homePage.postlikeCount());
     }
 }

@@ -1,8 +1,8 @@
 package setup;
 
 import com.sun.javafx.PlatformUtil;
-import helpers.util.Storage;
 import com.thoughtworks.gauge.AfterScenario;
+import helpers.util.Storage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,6 +20,7 @@ public class DriverFactory {
     private static WebDriver driver;
 
     public static void setDriver() {
+
         if (driver != null)
             return;
 

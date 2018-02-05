@@ -17,8 +17,8 @@ Comment on the post
 Up or Down vote post
 --------------------
 * User should get navigated to homepage
-* Open any post
 * Vote a post having text "Mavericks QA Assignment" with "upvote"
+* Vote should be updated
 
 
 

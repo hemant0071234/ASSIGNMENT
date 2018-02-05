@@ -14,6 +14,7 @@ public class Storage {
     private static final String HOME_PAGE = "home-page";
     private static final String POST_PAGE = "post-page";
     private static final String POST_COMMENT = "post-comment";
+    private static final String POST_VOTE = "post-vote";
 
     public static List<String> getFailedPermissions(){return (List<String>) getStorage().get(FAILED_PERMISSION);}
     public static void flushAll() {
@@ -46,5 +47,13 @@ public class Storage {
 
     public static void setComment(String comment) {
         getStorage().put(POST_COMMENT, comment);
+    }
+
+    public static String getVote() {
+        return (String) getStorage().get(POST_VOTE);
+    }
+
+    public static void setVote(String vote) {
+        getStorage().put(POST_VOTE, vote);
     }
 }

@@ -1,8 +1,10 @@
 package pages.common.ui;
 
 import helpers.ui.Page;
+import helpers.util.Storage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -24,6 +26,14 @@ public class HomePage extends Page{
     @FindBy(linkText = "Submit a new text post")
     public WebElement submitNewTextPost;
 
+    @FindAll({
+            @FindBy(xpath="//div[contains(@class,'upmod')]"),
+            @FindBy(xpath="//div[contains(@class,'up')]"),
+            @FindBy(xpath="//div[contains(@class,'downmod')]"),
+            @FindBy(xpath="//div[contains(@class,'down')]")
+    })
+    public WebElement postlike;
+
     public HomePage() {
         initElements(this);
     }
@@ -38,11 +48,24 @@ public class HomePage extends Page{
     }
 
     public void voteAPost(String postToFindText, String voteFlag) throws InterruptedException {
-        click(getDriver().findElement(By.xpath("//p[@class='title']//a[contains(text(),'"
-                + postToFindText+"')]/../../../../div[@class='midcol likes']//div[@data-event-action='"+voteFlag+"']")));
+        Storage.setComment(postToFindText);
+        Storage.setVote(voteFlag);
+        waitForPageLoad();
+        String xpath="//p[@class='title']//a[contains(text(),'"
+                +postToFindText+"')]/../../../..//div[starts-with(@class,'midcol')]//div[@data-event-action='"+voteFlag+"']";
+        WebElement elm = getDriver().findElement(By.xpath(xpath));
+        click(elm);
     }
 
-    public void getCurrentVoteCount(){
-
+    public boolean postlikeCount(){
+        if(Storage.getVote().equals("upvote")) {
+            String voteXpath = "//p[@class='title']//a[contains(text(),'"+Storage.getComment()+"')]/../../../..//div[starts-with(@class,'midcol likes')]";
+            WebElement elm = getDriver().findElement(By.xpath(voteXpath));
+            return isElementVisible(elm);
+        }else{
+            String voteXpath = "//p[@class='title']//a[contains(text(),'"+Storage.getComment()+"')]/../../../..//div[starts-with(@class,'midcol dislikes')]";
+            WebElement elm = getDriver().findElement(By.xpath(voteXpath));
+            return isElementVisible(elm);
+        }
     }
 }
