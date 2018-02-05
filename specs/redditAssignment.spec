@@ -22,14 +22,3 @@ Down vote post
 * Vote should be updated
 
 
-
-
-
-
-
-
-
-
-
-
-
