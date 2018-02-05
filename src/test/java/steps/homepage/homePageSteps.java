@@ -64,6 +64,6 @@ public class homePageSteps {
     @Step("Vote should be updated")
     public void voteShouldBeUpdated() {
         HomePage homePage = Storage.getHomePage();
-        assertThat("Post vote count should be updated", homePage.postlikeCount());
+        assertThat("Post vote count should be updated", homePage.onVotePostLikeCountShouldChange());
     }
 }

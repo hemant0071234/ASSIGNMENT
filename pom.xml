@@ -29,6 +29,7 @@
             <groupId>com.thoughtworks.gauge</groupId>
             <artifactId>gauge-java</artifactId>
             <version>0.6.2</version>
+
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -52,7 +53,26 @@
             <type>maven-plugin</type>
         </dependency>
     </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.thoughtworks.gauge.maven</groupId>
+                <artifactId>gauge-maven-plugin</artifactId>
+                <version>1.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <configuration>
+                            <specsDir>specs</specsDir>
+                        </configuration>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
     <reporting>
         <plugins>
             <plugin>
@@ -62,5 +82,4 @@
             </plugin>
         </plugins>
     </reporting>
-
 </project>

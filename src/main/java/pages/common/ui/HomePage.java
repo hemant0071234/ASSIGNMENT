@@ -4,7 +4,6 @@ import helpers.ui.Page;
 import helpers.util.Storage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
@@ -25,14 +24,6 @@ public class HomePage extends Page{
 
     @FindBy(linkText = "Submit a new text post")
     public WebElement submitNewTextPost;
-
-    @FindAll({
-            @FindBy(xpath="//div[contains(@class,'upmod')]"),
-            @FindBy(xpath="//div[contains(@class,'up')]"),
-            @FindBy(xpath="//div[contains(@class,'downmod')]"),
-            @FindBy(xpath="//div[contains(@class,'down')]")
-    })
-    public WebElement postlike;
 
     public HomePage() {
         initElements(this);
@@ -57,15 +48,40 @@ public class HomePage extends Page{
         click(elm);
     }
 
-    public boolean postlikeCount(){
+    public boolean onVotePostLikeCountShouldChange(){
+        String baseXpath = "//p[@class='title']//a[contains(text(),'"+Storage.getComment()+"')]/../../../..//";
+
         if(Storage.getVote().equals("upvote")) {
-            String voteXpath = "//p[@class='title']//a[contains(text(),'"+Storage.getComment()+"')]/../../../..//div[starts-with(@class,'midcol likes')]";
-            WebElement elm = getDriver().findElement(By.xpath(voteXpath));
-            return isElementVisible(elm);
-        }else{
-            String voteXpath = "//p[@class='title']//a[contains(text(),'"+Storage.getComment()+"')]/../../../..//div[starts-with(@class,'midcol dislikes')]";
-            WebElement elm = getDriver().findElement(By.xpath(voteXpath));
-            return isElementVisible(elm);
+            try {
+                String voteXpath = baseXpath + "div[starts-with(@class,'midcol likes')]";
+                WebElement elm = getDriver().findElement(By.xpath(voteXpath));
+                return isElementVisible(elm);
+            }catch(Exception e){
+                String voteXpath = baseXpath + "div[starts-with(@class,'midcol unvoted')]";
+                WebElement elm = getDriver().findElement(By.xpath(voteXpath));
+                return isElementVisible(elm);
+            }
         }
+        else if(Storage.getVote().equals("downvote")){
+            try {
+                String voteXpath = baseXpath + "div[starts-with(@class,'midcol dislikes')]";
+                WebElement elm = getDriver().findElement(By.xpath(voteXpath));
+                return isElementVisible(elm);
+            }catch(Exception e){
+                String voteXpath = baseXpath + "div[starts-with(@class,'midcol unvoted')]";
+                WebElement elm = getDriver().findElement(By.xpath(voteXpath));
+                return isElementVisible(elm);
+            }
+        }
+        else{
+            try {
+                String voteXpath = baseXpath + "div[starts-with(@class,'midcol unvoted')]";
+                WebElement elm = getDriver().findElement(By.xpath(voteXpath));
+                return isElementVisible(elm);
+            }catch(Exception e){
+                System.out.println(e.toString());
+            }
+        }
+        return false;
     }
 }
