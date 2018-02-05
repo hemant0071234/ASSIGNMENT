@@ -29,12 +29,15 @@ public class homePageSteps {
         assertThat("Post page should be ready", post.isReady());
     }
 
+    @Step("Write <test comment> as a comment in the post")
+    public void writeACommentOnPost(String comment) throws InterruptedException {
+        Post post = Storage.getPostPage();
+        post.writeAComment(comment);
+    }
 
     @Step("Write a comment in the post")
     public void writeACommentOnPost() throws InterruptedException {
         Post post = Storage.getPostPage();
-
-
         Date today;
         String strDate;
         DateFormat dateFormat;
@@ -43,8 +46,19 @@ public class homePageSteps {
         today = new Date();
         strDate = dateFormat.format(today);
 
-
+        Storage.setComment(strDate);
         post.writeAComment(strDate);
+    }
 
+    @Step("Added comment should be visible in the post")
+    public void addecCommentShouldBeVisibleInPost() {
+        Post post = Storage.getPostPage();
+        assertThat("Added comment is not displayed", post.addedCommentShouldBeVisibleInPost(Storage.getComment()));
+    }
+
+    @Step("Vote a post having text < text> with <upvote>")
+    public void votePostWithFlag(String postTitleText, String voteFlag) throws InterruptedException {
+        HomePage homePage = Storage.getHomePage();
+        homePage.voteAPost(postTitleText,voteFlag);
     }
 }

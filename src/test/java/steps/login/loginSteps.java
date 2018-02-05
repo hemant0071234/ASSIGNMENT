@@ -12,7 +12,6 @@ public class loginSteps {
         assertThat("Login page should be ready", loginPage.isReady());
     }
 
-
     @Step("Login to application using <testName> and <testPassword>")
     public void loginToApplicationUsingCredentials(String userName, String password) throws InterruptedException {
         LoginPage loginPage = new LoginPage();

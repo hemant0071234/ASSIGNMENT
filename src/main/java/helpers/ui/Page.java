@@ -59,6 +59,8 @@ public class Page {
         return this;
     }
 
+    public WebDriver getDriver(){return driver;}
+
     protected void hoverOnElement(WebElement element) {
         action.moveToElement(element).build().perform();
     }

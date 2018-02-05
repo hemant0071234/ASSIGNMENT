@@ -19,7 +19,6 @@ public class LoginPage extends Page {
     @FindBy(xpath = "//button[text()='log in']")
     public WebElement loginBtn;
 
-
     public LoginPage() {
         initElements(this);
     }
@@ -55,5 +54,4 @@ public class LoginPage extends Page {
     private void waitForLoginButtonToEnable() throws InterruptedException {
         waitForElementToNotHaveClassNameAttribute(loginBtn, "disabled");
     }
-
 }

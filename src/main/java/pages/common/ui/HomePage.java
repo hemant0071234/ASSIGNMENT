@@ -1,11 +1,11 @@
 package pages.common.ui;
 
 import helpers.ui.Page;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
-import java.util.Random;
 
 public class HomePage extends Page{
 
@@ -34,12 +34,15 @@ public class HomePage extends Page{
     }
 
     public void openAnyPost() throws InterruptedException {
-        int postIndex = userPosts.size();
-        if(postIndex>1) {
-            Random rn = new Random();
-            postIndex = rn.nextInt(postIndex) + 1;
-        }
-        click(userPosts.get(postIndex));
+        click(userPosts.get(userPosts.size()-1));
+    }
+
+    public void voteAPost(String postToFindText, String voteFlag) throws InterruptedException {
+        click(getDriver().findElement(By.xpath("//p[@class='title']//a[contains(text(),'"
+                + postToFindText+"')]/../../../../div[@class='midcol likes']//div[@data-event-action='"+voteFlag+"']")));
+    }
+
+    public void getCurrentVoteCount(){
 
     }
 }
