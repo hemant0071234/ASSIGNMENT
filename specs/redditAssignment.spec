@@ -1,11 +1,6 @@
 Reddit Assignment
-=====================
+=================
 tags: ValidLogin
-
-Valid login
------------
-* Valid user login to application
-* User should get navigated to homepage
 
 Comment on the post
 -------------------

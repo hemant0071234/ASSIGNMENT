@@ -6,11 +6,11 @@ import exceptions.ElementNotFoundException;
 import exceptions.ElementNotVisibleException;
 import exceptions.ElementVisibleException;
 import exceptions.PageNotReadyException;
-import setup.DriverFactory;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.*;
+import setup.DriverFactory;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -30,7 +30,6 @@ public class Page {
 
     public Page() {
         driver = DriverFactory.getDriver();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, Timeout.element_timeout_in_seconds);
         action = new Actions(driver);
         jsDriver = (JavascriptExecutor) driver;

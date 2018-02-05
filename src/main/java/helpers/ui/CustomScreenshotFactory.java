@@ -1,11 +1,11 @@
 package helpers.ui;
 
-import setup.DriverFactory;
 import com.thoughtworks.gauge.Gauge;
 import com.thoughtworks.gauge.screenshot.ICustomScreenshotGrabber;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import setup.DriverFactory;
 
 public class CustomScreenshotFactory implements ICustomScreenshotGrabber {
 

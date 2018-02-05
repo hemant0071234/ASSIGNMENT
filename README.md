@@ -25,8 +25,3 @@
 3. Select "Run redditAssignment.htm..."
 4. Test will start executing
 5. Once test gets complete, you can see result in the "report/index.html"
-
-### Running test from command line
-1. Go to ASSIGNMENT folder
-2. Open command line
-3. 
